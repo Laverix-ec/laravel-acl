@@ -1,8 +1,8 @@
-<?php namespace Kodeine\Acl\Tests\Models;
+<?php namespace SlonCorp\Acl\Tests\Models;
 
-use Kodeine\Acl\Models\Eloquent\Permission;
-use Kodeine\Acl\Models\Eloquent\Role;
-use Kodeine\Acl\Models\Eloquent\User;
+use SlonCorp\Acl\Models\Eloquent\Permission;
+use SlonCorp\Acl\Models\Eloquent\Role;
+use SlonCorp\Acl\Models\Eloquent\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class UserTest extends ModelsTest
@@ -41,7 +41,7 @@ class UserTest extends ModelsTest
     {
         $expectations = [
             \Illuminate\Database\Eloquent\Model::class,
-            \Kodeine\Acl\Models\Eloquent\User::class,
+            \SlonCorp\Acl\Models\Eloquent\User::class,
         ];
 
         foreach ($expectations as $expected) {

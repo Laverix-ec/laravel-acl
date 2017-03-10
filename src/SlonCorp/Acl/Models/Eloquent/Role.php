@@ -1,7 +1,7 @@
-<?php namespace Kodeine\Acl\Models\Eloquent;
+<?php namespace SlonCorp\Acl\Models\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
-use Kodeine\Acl\Traits\HasPermission;
+use SlonCorp\Acl\Traits\HasPermission;
 
 class Role extends Model
 {

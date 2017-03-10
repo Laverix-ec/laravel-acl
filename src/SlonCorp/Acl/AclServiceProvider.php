@@ -1,4 +1,4 @@
-<?php namespace Kodeine\Acl;
+<?php namespace SlonCorp\Acl;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;

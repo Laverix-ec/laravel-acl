@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Kodeine\\Acl\\": "src/Kodeine/Acl"
+            "SlonCorp\\Acl\\": "src/SlonCorp/Acl"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Kodeine\\Acl\\Tests\\": "tests/"
+            "SlonCorp\\Acl\\Tests\\": "tests/"
         }
     }
 }

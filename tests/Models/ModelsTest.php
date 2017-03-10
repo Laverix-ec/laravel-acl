@@ -1,6 +1,6 @@
-<?php namespace Kodeine\Acl\Tests\Models;
+<?php namespace SlonCorp\Acl\Tests\Models;
 
-use Kodeine\Acl\Tests\TestCase;
+use SlonCorp\Acl\Tests\TestCase;
 
 abstract class ModelsTest extends TestCase
 {
