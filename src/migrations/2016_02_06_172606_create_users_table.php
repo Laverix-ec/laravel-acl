@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
                 $table->string('email');
                 $table->string('password', 60);
                 $table->rememberToken();
+                $table->boolean('changed_password');
+                $table->boolean('enabled');
                 $table->timestamps();
             });
         }
