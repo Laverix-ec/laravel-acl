@@ -16,15 +16,16 @@ class CreateUsersTable extends Migration
         if (!Schema::hasTable('users')) {
             Schema::create('users', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('username');
-                $table->string('first_name', 30)->nullable();
-                $table->string('last_name', 30)->nullable();
-                $table->string('email');
-                $table->string('password', 60);
+                $table->string('username',10);
+                $table->string('first_name', 50);
+                $table->string('last_name', 50);
+                $table->string('email', 75);
+                $table->string('password', 255);
                 $table->rememberToken();
-                $table->boolean('changed_password');
-                $table->boolean('enabled');
+                $table->boolean('changed_password')->default(false);
+                $table->boolean('enabled')->default(true);
                 $table->timestamps();
+                $table->timestamp('deleted_at')->nullable();
             });
         }
     }

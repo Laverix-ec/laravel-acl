@@ -23,9 +23,9 @@ class AclServiceProvider extends ServiceProvider
         $this->publishMigration();
 
         $laravel = app();
-        if ( starts_with($laravel::VERSION, '5.0') ) {
+        if (starts_with($laravel::VERSION, '5.0')) {
             $this->registerBlade5_0();
-        } else if ( starts_with($laravel::VERSION, ['5.1', '5.2']) ) {
+        } else if (starts_with($laravel::VERSION, ['5.1', '5.2'])) {
             $this->registerBlade5_1();
         } else {
             $this->registerBlade5_3();
@@ -84,7 +84,8 @@ class AclServiceProvider extends ServiceProvider
             return "<?php endif; ?>";
         });
     }
-        /**
+
+    /**
      * Register Blade Template Extensions for >= L5.1
      */
     protected function registerBlade5_1()

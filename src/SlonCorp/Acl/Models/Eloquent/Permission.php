@@ -58,13 +58,13 @@ class Permission extends Model
         // if nothing being set, clear slug
         if (empty($value)) {
             $this->attributes['slug'] = '[]';
-            return ;
+            return;
         }
 
-        $value = is_array($value) ? $value : [$value => true];
+        $value = is_array($value) ? $value : [$value => ['allowed' => true, 'label' => $value]];
 
         // if attribute is being updated.
-        if ( isset($this->original['slug']) ) {
+        if (isset($this->original['slug'])) {
             $value = $value + json_decode($this->original['slug'], true);
 
             // sort by key
@@ -72,7 +72,7 @@ class Permission extends Model
         }
 
         // remove null values.
-        $value = array_filter($value, 'is_bool');
+        $value = array_filter($value, 'is_array');
 
         // store as json.
         $this->attributes['slug'] = json_encode($value);

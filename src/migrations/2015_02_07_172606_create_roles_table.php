@@ -18,8 +18,8 @@ class CreateRolesTable extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->boolean('enabled');
-            $table->boolean('editable');
+            $table->boolean('enabled')->default(true);
+            $table->boolean('editable')->default(true);
             $table->timestamps();
         });
     }

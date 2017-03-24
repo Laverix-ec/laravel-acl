@@ -33,6 +33,23 @@ trait Helper
     |
     */
 
+    private function _toDot(&$data, $slug, $value)
+    {
+
+        if (!is_array($value)) {
+            return;
+        }
+
+        $data[$slug] = $value['allowed'];
+
+        if (array_key_exists('inner', $value)) {
+            foreach ($value['inner'] as $key => $value) {
+                $slug = $key . '.' . $slug;
+                $this->_toDot($data, $slug, $value);
+            }
+        }
+    }
+
     protected function toDotPermissions(array $permissions)
     {
         $data = [];
@@ -42,8 +59,9 @@ trait Helper
             foreach ($perm as $key => $value) {
                 //if ( (bool) $value == false ) continue;
                 $slug = $key . '.' . $alias;
-                $data[$slug] = $value;
+                // $data[$slug] = $value;
                 //$data[] = $slug;
+                $this->_toDot($data, $slug, $value);
             }
         }
 

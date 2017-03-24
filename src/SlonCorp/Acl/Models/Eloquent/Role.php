@@ -32,27 +32,11 @@ class Role extends Model
     }
 
     /**
-     * List all permissions
-     *
-     * @return mixed
-     */
-    public function getPermissions()
-    {
-        return \Cache::remember(
-            'acl.getPermissionsInheritedById_'.$this->id,
-            config('acl.cacheMinutes'),
-            function () {
-                return $this->getPermissionsInherited();
-            }
-        );
-    }
-
-    /**
      * Checks if the role has the given permission.
      *
      * @param string $permission
      * @param string $operator
-     * @param array  $mergePermissions
+     * @param array $mergePermissions
      * @return bool
      */
     public function can($permission, $operator = null, $mergePermissions = [])
@@ -67,9 +51,9 @@ class Role extends Model
         $permissions = $this->toDotPermissions($permissions);
 
         // validate permissions array
-        if ( is_array($permission) ) {
+        if (is_array($permission)) {
 
-            if ( ! in_array($operator, ['and', 'or']) ) {
+            if (!in_array($operator, ['and', 'or'])) {
                 $e = 'Invalid operator, available operators are "and", "or".';
                 throw new \InvalidArgumentException($e);
             }
@@ -84,6 +68,22 @@ class Role extends Model
     }
 
     /**
+     * List all permissions
+     *
+     * @return mixed
+     */
+    public function getPermissions()
+    {
+        return \Cache::remember(
+            'acl.getPermissionsInheritedById_' . $this->id,
+            config('acl.cacheMinutes'),
+            function () {
+                return $this->getPermissionsInherited();
+            }
+        );
+    }
+
+    /**
      * @param $permission
      * @param $permissions
      * @return bool
@@ -91,7 +91,7 @@ class Role extends Model
     protected function canWithAnd($permission, $permissions)
     {
         foreach ($permission as $check) {
-            if ( ! in_array($check, $permissions) || ! isset($permissions[$check]) || $permissions[$check] != true ) {
+            if (!in_array($check, $permissions) || !isset($permissions[$check]) || $permissions[$check] != true) {
                 return false;
             }
         }
@@ -107,7 +107,7 @@ class Role extends Model
     protected function canWithOr($permission, $permissions)
     {
         foreach ($permission as $check) {
-            if ( in_array($check, $permissions) && isset($permissions[$check]) && $permissions[$check] == true ) {
+            if (in_array($check, $permissions) && isset($permissions[$check]) && $permissions[$check] == true) {
                 return true;
             }
         }
