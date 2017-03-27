@@ -44,8 +44,7 @@ trait Helper
 
         if (array_key_exists('inner', $value)) {
             foreach ($value['inner'] as $key => $value) {
-                $slug = $key . '.' . $slug;
-                $this->_toDot($data, $slug, $value);
+                $this->_toDot($data, $key . '.' . $slug, $value);
             }
         }
     }
@@ -58,10 +57,10 @@ trait Helper
             if ( ! is_array($perm) ) continue;
             foreach ($perm as $key => $value) {
                 //if ( (bool) $value == false ) continue;
-                $slug = $key . '.' . $alias;
+                // $slug = $key . '.' . $alias;
                 // $data[$slug] = $value;
                 //$data[] = $slug;
-                $this->_toDot($data, $slug, $value);
+                $this->_toDot($data, $key . '.' . $alias, $value);
             }
         }
 
