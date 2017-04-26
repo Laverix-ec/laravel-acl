@@ -69,12 +69,12 @@ abstract class TestCase extends BaseTestCase
     public function getTablesNames()
     {
         return [
-            'users',
-            'roles',
-            'role_user',
-            'permissions',
-            'permission_role',
-            'permission_user',
+            'acl_users',
+            'acl_roles',
+            'acl_role_user',
+            'acl_permissions',
+            'acl_permission_role',
+            'acl_permission_user',
         ];
     }
 
@@ -85,7 +85,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getMigrationsSrcPath()
     {
-        return realpath(dirname(__DIR__) . '/src/migrations');
+        return realpath(dirname(__DIR__) . '/src/migrations/acl');
     }
 
     /**
