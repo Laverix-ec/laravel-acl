@@ -60,7 +60,7 @@ class AclServiceProvider extends ServiceProvider
     public function publishMigration()
     {
         $this->publishes([
-            __DIR__ . '/../../migrations/' => base_path('/database/migrations'),
+            __DIR__ . '/../../migrations/acl/' => base_path('/database/migrations/acl'),
         ], 'migrations');
     }
 
