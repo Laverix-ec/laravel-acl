@@ -33,7 +33,7 @@ trait HasRoleImplementation
     {
         $model = config('acl.role', 'SlonCorp\Acl\Models\Eloquent\Role');
 
-        return $this->belongsToMany($model)->withTimestamps()->where('enabled', 1);
+        return $this->belongsToMany($model, 'acl_role_user')->withTimestamps()->where('enabled', 1);
     }
 
     /**

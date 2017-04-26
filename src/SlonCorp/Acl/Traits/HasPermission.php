@@ -23,7 +23,7 @@ trait HasPermission
     {
         $model = config('acl.permission', 'SlonCorp\Acl\Models\Eloquent\Permission');
 
-        return $this->belongsToMany($model)->withTimestamps();
+        return $this->belongsToMany($model, 'acl_permission_role')->withTimestamps();
     }
 
     /**
