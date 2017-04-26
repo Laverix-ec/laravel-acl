@@ -1,4 +1,7 @@
-<?php namespace SlonCorp\Acl\Models\Eloquent;
+<?php
+
+namespace SlonCorp\Acl\Models\Eloquent;
+
 
 use Illuminate\Database\Eloquent\Model;
 use SlonCorp\Acl\Traits\HasPermission;
@@ -12,14 +15,14 @@ class Role extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'description'];
+    protected $fillable = ['name', 'slug', 'description', 'enabled', 'editable'];
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'roles';
+    protected $table = 'acl_roles';
 
     /**
      * Roles can belong to many users.
@@ -28,7 +31,9 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(config('auth.providers.users.model', config('auth.model')))->withTimestamps();
+        $model = config('auth.providers.users.model', 'SlonCorp\Acl\Models\Eloquent\User');
+
+        return $this->belongsToMany($model)->withTimestamps();
     }
 
     /**
@@ -74,13 +79,9 @@ class Role extends Model
      */
     public function getPermissions()
     {
-        return \Cache::remember(
-            'acl.getPermissionsInheritedById_' . $this->id,
-            config('acl.cacheMinutes'),
-            function () {
-                return $this->getPermissionsInherited();
-            }
-        );
+        return \Cache::remember('acl.getPermissionsInheritedById_' . $this->id, config('acl.cacheMinutes'), function () {
+            return $this->getPermissionsInherited();
+        });
     }
 
     /**

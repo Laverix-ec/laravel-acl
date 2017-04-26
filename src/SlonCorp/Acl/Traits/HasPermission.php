@@ -1,5 +1,6 @@
 <?php namespace SlonCorp\Acl\Traits;
 
+use Illuminate\Database\Eloquent\Collection;
 use SlonCorp\Acl\Helper\Helper;
 
 trait HasPermission
@@ -34,13 +35,9 @@ trait HasPermission
     public function getPermissions()
     {
         // user permissions overridden from role.
-        $permissions = \Cache::remember(
-            'acl.getPermissionsById_'.$this->id,
-            config('acl.cacheMinutes'),
-            function () {
-                return $this->getPermissionsInherited();
-            }
-        );
+        $permissions = \Cache::remember('acl.getPermissionsById_' . $this->id, config('acl.cacheMinutes'), function () {
+            return $this->getPermissionsInherited();
+        });
 
         // permissions based on role.
         // more permissive permission wins
@@ -48,10 +45,10 @@ trait HasPermission
         // true values.
         foreach ($this->roles as $role) {
             foreach ($role->getPermissions() as $slug => $array) {
-                if ( array_key_exists($slug, $permissions) ) {
+                if (array_key_exists($slug, $permissions)) {
                     foreach ($array as $clearance => $value) {
-                        if( !array_key_exists( $clearance, $permissions[$slug] ) ) {
-                            ! $value ?: $permissions[$slug][$clearance] = true;
+                        if (!array_key_exists($clearance, $permissions[$slug])) {
+                            !$value ?: $permissions[$slug][$clearance] = true;
                         }
                     }
                 } else {
@@ -74,13 +71,9 @@ trait HasPermission
     {
         // user permissions including
         // all of user role permissions
-        $merge =  \Cache::remember(
-            'acl.getMergeById_'.$this->id,
-            config('acl.cacheMinutes'),
-            function () {
-                return $this->getPermissions();
-            }
-        );
+        $merge = \Cache::remember('acl.getMergeById_' . $this->id, config('acl.cacheMinutes'), function () {
+            return $this->getPermissions();
+        });
 
         // lets call our base can() method
         // from role class. $merge already
@@ -93,8 +86,8 @@ trait HasPermission
     /**
      * Assigns the given permission to the user.
      *
-     * @param  collection|object|array|string|int $permission
-     * @return bool
+     * @param  Collection|object|array|string|int $permission
+     * @return bool|array
      */
     public function assignPermission($permission)
     {
@@ -102,7 +95,7 @@ trait HasPermission
 
             $permissionId = $this->parsePermissionId($permission);
 
-            if ( ! $this->permissions->keyBy('id')->has($permissionId) ) {
+            if (!$this->permissions->keyBy('id')->has($permissionId)) {
                 $this->permissions()->attach($permissionId);
 
                 return $permission;
@@ -115,8 +108,8 @@ trait HasPermission
     /**
      * Revokes the given permission from the user.
      *
-     * @param  collection|object|array|string|int $permission
-     * @return bool
+     * @param  Collection|object|array|string|int $permission
+     * @return bool|array
      */
     public function revokePermission($permission)
     {
@@ -131,7 +124,7 @@ trait HasPermission
     /**
      * Syncs the given permission(s) with the user.
      *
-     * @param  collection|object|array|string|int $permissions
+     * @param  Collection|object|array|string|int $permissions
      * @return bool
      */
     public function syncPermissions($permissions)
@@ -173,13 +166,13 @@ trait HasPermission
      */
     protected function parsePermissionId($permission)
     {
-        if ( is_string($permission) || is_numeric($permission) ) {
+        if (is_string($permission) || is_numeric($permission)) {
 
             $model = config('acl.permission', 'SlonCorp\Acl\Models\Eloquent\Permission');
             $key = is_numeric($permission) ? 'id' : 'name';
             $alias = (new $model)->where($key, $permission)->first();
 
-            if ( ! is_object($alias) || ! $alias->exists ) {
+            if (!is_object($alias) || !$alias->exists) {
                 throw new \InvalidArgumentException('Specified permission ' . $key . ' does not exists.');
             }
 
@@ -187,10 +180,10 @@ trait HasPermission
         }
 
         $model = '\Illuminate\Database\Eloquent\Model';
-        if ( is_object($permission) && $permission instanceof $model ) {
+        if (is_object($permission) && $permission instanceof $model) {
             $permission = $permission->getKey();
         }
 
-        return (int) $permission;
+        return (int)$permission;
     }
 }

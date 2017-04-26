@@ -21,9 +21,7 @@ trait Helper
      */
     protected function collectionAsArray($data)
     {
-        return ($data instanceof Collection)
-            ? $data->toArray()
-            : $data;
+        return ($data instanceof Collection) ? $data->toArray() : $data;
     }
 
     /*
@@ -40,7 +38,7 @@ trait Helper
             return;
         }
 
-        $data[$slug] = $value['allowed'];
+        $data[$slug] = $value['allowed'] == true;
 
         if (array_key_exists('inner', $value)) {
             foreach ($value['inner'] as $key => $value) {
@@ -54,12 +52,14 @@ trait Helper
         $data = [];
         //$permissions = $this->permissions->lists('slug', 'name');
         foreach ($permissions as $alias => $perm) {
-            if ( ! is_array($perm) ) continue;
+            if (!is_array($perm))
+                continue;
+
             foreach ($perm as $key => $value) {
                 //if ( (bool) $value == false ) continue;
                 // $slug = $key . '.' . $alias;
                 // $data[$slug] = $value;
-                //$data[] = $slug;
+                // $data[] = $slug;
                 $this->_toDot($data, $key . '.' . $alias, $value);
             }
         }

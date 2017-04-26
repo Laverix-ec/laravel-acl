@@ -13,8 +13,8 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('users')) {
-            Schema::create('users', function (Blueprint $table) {
+        if (!Schema::hasTable('acl_users')) {
+            Schema::create('acl_users', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('username',10);
                 $table->string('first_name', 50);
@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
                 $table->boolean('changed_password')->default(false);
                 $table->boolean('enabled')->default(true);
                 $table->timestamps();
-                $table->timestamp('deleted_at')->nullable();
+                $table->softDeletes();
             });
         }
     }
@@ -37,6 +37,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::drop('acl_users');
     }
 }

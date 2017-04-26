@@ -1,4 +1,7 @@
-<?php namespace SlonCorp\Acl\Models\Eloquent;
+<?php
+
+namespace SlonCorp\Acl\Models\Eloquent;
+
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,14 +12,14 @@ class Permission extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'description', 'inherit_id'];
+    protected $fillable = ['name', 'label', 'slug', 'description', 'inherit_id'];
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'permissions';
+    protected $table = 'acl_permissions';
 
     /**
      * Permissions can belong to many roles.
@@ -38,7 +41,9 @@ class Permission extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(config('auth.providers.users.model', config('auth.model')))->withTimestamps();
+        $model = config('auth.providers.users.model', 'SlonCorp\Acl\Models\Eloquent\User');
+
+        return $this->belongsToMany($model)->withTimestamps();
     }
 
     /**
@@ -57,11 +62,11 @@ class Permission extends Model
     {
         // if nothing being set, clear slug
         if (empty($value)) {
-            $this->attributes['slug'] = '[]';
+            $this->attributes['slug'] = '{}';
             return;
         }
 
-        $value = is_array($value) ? $value : [$value => ['allowed' => true, 'label' => $value]];
+        $value = is_array($value) ? $value : [$value => ['allowed' => 'false', 'label' => $value]];
 
         // if attribute is being updated.
         if (isset($this->original['slug'])) {

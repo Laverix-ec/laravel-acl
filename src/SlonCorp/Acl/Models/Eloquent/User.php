@@ -1,4 +1,7 @@
-<?php namespace SlonCorp\Acl\Models\Eloquent;
+<?php
+
+namespace SlonCorp\Acl\Models\Eloquent;
+
 
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,14 +17,14 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['username', 'first_name', 'last_name', 'email', 'password',];
+    protected $fillable = ['username', 'first_name', 'last_name', 'email', 'password', 'enabled'];
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'acl_users';
 
     /**
      * The attributes that should be mutated to dates.

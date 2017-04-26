@@ -1,10 +1,17 @@
-<?php namespace SlonCorp\Acl\Traits;
+<?php
+
+namespace SlonCorp\Acl\Traits;
+
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class HasRoleImplementation
  * @package SlonCorp\Acl\Traits
  *
- * @method static Builder|Collection|\Eloquent role($role, $column = null)
+ * @method static Builder|Collection|Model role($role, $column = null)
  */
 trait HasRoleImplementation
 {
@@ -36,23 +43,17 @@ trait HasRoleImplementation
      */
     public function getRoles()
     {
-        $this_roles = \Cache::remember(
-            'acl.getRolesById_'.$this->id,
-            config('acl.cacheMinutes'),
-            function () {
-                return $this->roles;
-            }
-        );
+        $this_roles = \Cache::remember('acl.getRolesById_' . $this->id, config('acl.cacheMinutes'), function () {
+            return $this->roles;
+        });
 
-        $slugs = method_exists($this_roles, 'pluck') ? $this_roles->pluck('slug','id') : $this_roles->lists('slug','id');
-        return is_null($this_roles)
-            ? []
-            : $this->collectionAsArray($slugs);
+        $slugs = method_exists($this_roles, 'pluck') ? $this_roles->pluck('slug', 'id') : $this_roles->lists('slug', 'id');
+
+        return is_null($this_roles) ? [] : $this->collectionAsArray($slugs);
     }
 
     /**
-     * Scope to select users having a specific
-     * role. Role can be an id or slug.
+     * Scope to select users having a specific role. Role can be an id or slug.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param int|string $role
@@ -89,13 +90,13 @@ trait HasRoleImplementation
         $operator = is_null($operator) ? $this->parseOperator($slug) : $operator;
 
         $roles = $this->getRoles();
-        $roles = $roles instanceof \Illuminate\Contracts\Support\Arrayable ? $roles->toArray() : (array) $roles;
+        $roles = $roles instanceof \Illuminate\Contracts\Support\Arrayable ? $roles->toArray() : (array)$roles;
         $slug = $this->hasDelimiterToArray($slug);
 
         // array of slugs
-        if ( is_array($slug) ) {
+        if (is_array($slug)) {
 
-            if ( ! in_array($operator, ['and', 'or']) ) {
+            if (!in_array($operator, ['and', 'or'])) {
                 $e = 'Invalid operator, available operators are "and", "or".';
                 throw new \InvalidArgumentException($e);
             }
@@ -112,8 +113,8 @@ trait HasRoleImplementation
     /**
      * Assigns the given role to the user.
      *
-     * @param  collection|object|array|string|int $role
-     * @return bool
+     * @param  Collection|object|array|string|int $role
+     * @return bool|mixed
      */
     public function assignRole($role)
     {
@@ -121,7 +122,7 @@ trait HasRoleImplementation
 
             $roleId = $this->parseRoleId($role);
 
-            if ( ! $this->roles->keyBy('id')->has($roleId) ) {
+            if (!$this->roles->keyBy('id')->has($roleId)) {
                 $this->roles()->attach($roleId);
 
                 return $role;
@@ -134,8 +135,8 @@ trait HasRoleImplementation
     /**
      * Revokes the given role from the user.
      *
-     * @param  collection|object|array|string|int $role
-     * @return bool
+     * @param  Collection|object|array|string|int $role
+     * @return bool|mixed
      */
     public function revokeRole($role)
     {
@@ -191,7 +192,7 @@ trait HasRoleImplementation
     protected function isWithAnd($slug, $roles)
     {
         foreach ($slug as $check) {
-            if ( ! in_array($check, $roles) ) {
+            if (!in_array($check, $roles)) {
                 return false;
             }
         }
@@ -207,7 +208,7 @@ trait HasRoleImplementation
     protected function isWithOr($slug, $roles)
     {
         foreach ($slug as $check) {
-            if ( in_array($check, $roles) ) {
+            if (in_array($check, $roles)) {
                 return true;
             }
         }
@@ -224,13 +225,13 @@ trait HasRoleImplementation
      */
     protected function parseRoleId($role)
     {
-        if ( is_string($role) || is_numeric($role) ) {
+        if (is_string($role) || is_numeric($role)) {
 
             $model = config('acl.role', 'SlonCorp\Acl\Models\Eloquent\Role');
             $key = is_numeric($role) ? 'id' : 'slug';
             $alias = (new $model)->where($key, $role)->first();
 
-            if ( ! is_object($alias) || ! $alias->exists ) {
+            if (!is_object($alias) || !$alias->exists) {
                 throw new \InvalidArgumentException('Specified role ' . $key . ' does not exists.');
             }
 
@@ -238,11 +239,11 @@ trait HasRoleImplementation
         }
 
         $model = '\Illuminate\Database\Eloquent\Model';
-        if ( is_object($role) && $role instanceof $model ) {
+        if (is_object($role) && $role instanceof $model) {
             $role = $role->getKey();
         }
 
-        return (int) $role;
+        return (int)$role;
     }
 
     /*
@@ -256,20 +257,20 @@ trait HasRoleImplementation
      * Magic __call method to handle dynamic methods.
      *
      * @param  string $method
-     * @param  array  $arguments
+     * @param  array $arguments
      * @return mixed
      */
     public function __call($method, $arguments)
     {
         // Handle isRoleSlug() methods
-        if ( starts_with($method, 'is') and $method !== 'is' and ! starts_with($method, 'isWith') ) {
+        if (starts_with($method, 'is') and $method !== 'is' and !starts_with($method, 'isWith')) {
             $role = substr($method, 2);
 
             return $this->hasRole($role);
         }
 
         // Handle canDoSomething() methods
-        if ( starts_with($method, 'can') and $method !== 'can' and ! starts_with($method, 'canWith') ) {
+        if (starts_with($method, 'can') and $method !== 'can' and !starts_with($method, 'canWith')) {
             $permission = substr($method, 3);
             $permission = snake_case($permission, '.');
 
