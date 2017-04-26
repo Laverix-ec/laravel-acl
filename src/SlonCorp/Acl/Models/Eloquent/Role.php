@@ -27,13 +27,13 @@ class Role extends Model
     /**
      * Roles can belong to many users.
      *
-     * @return Model
+     * @return Model|mixed
      */
     public function users()
     {
         $model = config('auth.providers.users.model', 'SlonCorp\Acl\Models\Eloquent\User');
 
-        return $this->belongsToMany($model)->withTimestamps();
+        return $this->belongsToMany($model, 'acl_role_user')->withTimestamps();
     }
 
     /**

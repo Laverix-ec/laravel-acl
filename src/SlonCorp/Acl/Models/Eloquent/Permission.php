@@ -30,20 +30,20 @@ class Permission extends Model
     {
         $model = config('acl.role', 'SlonCorp\Acl\Models\Eloquent\Role');
 
-        return $this->belongsToMany($model)->withTimestamps()->where('enabled', 1);
+        return $this->belongsToMany($model, 'acl_permission_role')->withTimestamps()->where('enabled', 1);
 
     }
 
     /**
      * Permissions can belong to many users.
      *
-     * @return Model
+     * @return Model|mixed
      */
     public function users()
     {
         $model = config('auth.providers.users.model', 'SlonCorp\Acl\Models\Eloquent\User');
 
-        return $this->belongsToMany($model)->withTimestamps();
+        return $this->belongsToMany($model, 'acl_permission_user')->withTimestamps();
     }
 
     /**
