@@ -13,9 +13,9 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('acl_permissions', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('inherit_id')->unsigned()->nullable()->index()->foreign('inherit_id')->references('id')->on('acl_permissions');
+            $table->integer('inherit_id')->unsigned()->nullable()->index()->foreign('inherit_id')->references('id')->on('permissions');
             $table->string('name')->index();
             $table->string('label')->nullable();
             $table->json('slug');
@@ -31,7 +31,7 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('acl_permissions');
+        Schema::drop('permissions');
     }
 
 }

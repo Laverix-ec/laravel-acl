@@ -69,12 +69,12 @@ abstract class TestCase extends BaseTestCase
     public function getTablesNames()
     {
         return [
-            'acl_users',
-            'acl_roles',
-            'acl_role_user',
-            'acl_permissions',
-            'acl_permission_role',
-            'acl_permission_user',
+            'users',
+            'roles',
+            'role_user',
+            'permissions',
+            'permission_role',
+            'permission_user',
         ];
     }
 

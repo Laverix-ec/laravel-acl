@@ -13,8 +13,8 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('acl_users')) {
-            Schema::create('acl_users', function (Blueprint $table) {
+        if (!Schema::hasTable('users')) {
+            Schema::create('users', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('username',10);
                 $table->string('first_name', 50);
@@ -37,6 +37,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('acl_users');
+        Schema::drop('users');
     }
 }

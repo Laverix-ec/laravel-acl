@@ -24,7 +24,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'acl_users';
+    protected $table = 'users';
 
     /**
      * The attributes that should be mutated to dates.

@@ -22,7 +22,7 @@ class Role extends Model
      *
      * @var string
      */
-    protected $table = 'acl_roles';
+    protected $table = 'roles';
 
     /**
      * Roles can belong to many users.
@@ -33,7 +33,7 @@ class Role extends Model
     {
         $model = config('auth.providers.users.model', 'SlonCorp\Acl\Models\Eloquent\User');
 
-        return $this->belongsToMany($model, 'acl_role_user')->withTimestamps();
+        return $this->belongsToMany($model)->withTimestamps();
     }
 
     /**
