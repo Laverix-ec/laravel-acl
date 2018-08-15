@@ -68,14 +68,6 @@ class Permission extends Model
 
         $value = is_array($value) ? $value : [$value => ['allowed' => 'false', 'label' => $value]];
 
-        // if attribute is being updated.
-        if (isset($this->original['slug'])) {
-            $value = $value + json_decode($this->original['slug'], true);
-
-            // sort by key
-            ksort($value);
-        }
-
         // remove null values.
         $value = array_filter($value, 'is_array');
 
