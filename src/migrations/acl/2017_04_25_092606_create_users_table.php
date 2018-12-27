@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
                 $table->increments('id');
                 $table->string('username',20);
                 $table->string('password', 255);
+                $table->string('photo', 255)->nullable();
                 $table->rememberToken();
                 $table->boolean('changed_password')->default(false);
                 $table->boolean('enabled')->default(true);
