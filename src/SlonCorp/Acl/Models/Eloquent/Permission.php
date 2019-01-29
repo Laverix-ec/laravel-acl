@@ -47,7 +47,20 @@ class Permission extends Model
     }
 
     /**
+     * Permissions can belong to a module.
+     *
+     * @return Model|mixed
+     */
+    public function module()
+    {
+        $model = config('acl.module', Module::class);
+
+        return $this->belongsTo($model)->withTimestamps();
+    }
+
+    /**
      * @param $value
+     *
      * @return array
      */
     public function getSlugAttribute($value)
