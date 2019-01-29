@@ -28,7 +28,7 @@ class Module extends Model
      */
     public function permissions()
     {
-        $model = config('acl.permissions', Permission::class);
+        $model = config('acl.permission', Permission::class);
 
         return $this->hasMany($model)->withTimestamps()->where('enabled', 1);
     }
