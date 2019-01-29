@@ -53,7 +53,7 @@ class Permission extends Model
      */
     public function module()
     {
-        $model = config('acl.module', Module::class);
+        $model = config('acl.module', 'SlonCorp\Acl\Models\Eloquent\Module');
 
         return $this->belongsTo($model)->withTimestamps();
     }

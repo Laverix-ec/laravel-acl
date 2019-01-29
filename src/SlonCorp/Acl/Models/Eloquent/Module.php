@@ -28,7 +28,7 @@ class Module extends Model
      */
     public function permissions()
     {
-        $model = config('acl.permission', Permission::class);
+        $model = config('acl.permission', 'SlonCorp\Acl\Models\Eloquent\Permission');
 
         return $this->hasMany($model)->withTimestamps()->where('enabled', 1);
     }
