@@ -12,7 +12,7 @@ class Permission extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'label', 'slug', 'description', 'inherit_id'];
+    protected $fillable = ['name', 'label', 'slug', 'description', 'inherit_id', 'module_id'];
 
     /**
      * The database table used by the model.
