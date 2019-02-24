@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
                 $table->string('last_name', 50);
                 $table->string('email', 75)->nullable();
                 $table->string('institution', 50)->nullable();
+                $table->enum('identification_type',['ced', 'other']);
                 $table->timestamps();
                 $table->softDeletes();
             });

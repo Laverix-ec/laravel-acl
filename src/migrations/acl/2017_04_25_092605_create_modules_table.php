@@ -20,7 +20,6 @@ class CreateModulesTable extends Migration
             $table->string('image')->nullable();
             $table->string('icon')->nullable();
             $table->boolean('enabled')->default(true);
-            $table->enum('identification_type',['ced', 'other']);
             $table->timestamps();
             $table->softDeletes();
         });
