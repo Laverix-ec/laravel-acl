@@ -1,7 +1,8 @@
 {
-    "name": "laverix-ec/laravel-acl",
+    "name": "laverix/laravel-acl",
     "description": "Role-based permissions for Laravel 5 built in Auth system.",
     "license": "MIT",
+    "homepage": "https://github.com/Laverix-ec/laravel-acl",
     "keywords": [
         "laravel",
         "permissions",
