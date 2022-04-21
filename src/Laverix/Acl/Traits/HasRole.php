@@ -1,6 +1,6 @@
 <?php
 
-namespace SlonCorp\Acl\Traits;
+namespace Laverix\Acl\Traits;
 
 
 use Illuminate\Database\Eloquent\Builder;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class HasRoleImplementation
- * @package SlonCorp\Acl\Traits
+ * @package Laverix\Acl\Traits
  *
  * @method static Builder|Collection|Model role($role, $column = null)
  */
@@ -31,7 +31,7 @@ trait HasRoleImplementation
      */
     public function roles()
     {
-        $model = config('acl.role', 'SlonCorp\Acl\Models\Eloquent\Role');
+        $model = config('acl.role', 'Laverix\Acl\Models\Eloquent\Role');
 
         return $this->belongsToMany($model)->withTimestamps()->where('enabled', 1);
     }
@@ -227,7 +227,7 @@ trait HasRoleImplementation
     {
         if (is_string($role) || is_numeric($role)) {
 
-            $model = config('acl.role', 'SlonCorp\Acl\Models\Eloquent\Role');
+            $model = config('acl.role', 'Laverix\Acl\Models\Eloquent\Role');
             $key = is_numeric($role) ? 'id' : 'slug';
             $alias = (new $model)->where($key, $role)->first();
 

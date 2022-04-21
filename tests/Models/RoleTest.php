@@ -1,8 +1,8 @@
-<?php namespace SlonCorp\Acl\Tests\Models;
+<?php namespace Laverix\Acl\Tests\Models;
 
-use SlonCorp\Acl\Models\Eloquent\Permission;
-use SlonCorp\Acl\Models\Eloquent\Role;
-use SlonCorp\Acl\Models\Eloquent\User;
+use Laverix\Acl\Models\Eloquent\Permission;
+use Laverix\Acl\Models\Eloquent\Role;
+use Laverix\Acl\Models\Eloquent\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class RoleTest extends ModelsTest
@@ -41,7 +41,7 @@ class RoleTest extends ModelsTest
     {
         $expectations = [
             \Illuminate\Database\Eloquent\Model::class,
-            \SlonCorp\Acl\Models\Eloquent\Role::class,
+            \Laverix\Acl\Models\Eloquent\Role::class,
         ];
 
         foreach ($expectations as $expected) {

@@ -1,4 +1,4 @@
-<?php namespace SlonCorp\Acl\Middleware;
+<?php namespace Laverix\Acl\Middleware;
 
 use Closure;
 

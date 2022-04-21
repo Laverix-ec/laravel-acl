@@ -1,4 +1,4 @@
-<?php namespace SlonCorp\Acl\Traits;
+<?php namespace Laverix\Acl\Traits;
 
 
 trait HasPermissionInheritance
@@ -136,7 +136,7 @@ trait HasPermissionInheritance
             return $cache;
         }
 
-        $model = config('acl.permission', 'SlonCorp\Acl\Models\Eloquent\Permission');
+        $model = config('acl.permission', 'Laverix\Acl\Models\Eloquent\Permission');
         $query = (new $model)->where('id', $inherit_id)->first();
 
         return is_object($query) ? $this->setCache($query) : false;
@@ -174,7 +174,7 @@ trait HasPermissionInheritance
     {
         if ( is_string($permission) || is_numeric($permission) ) {
 
-            $model = config('acl.permission', 'SlonCorp\Acl\Models\Eloquent\Permission');
+            $model = config('acl.permission', 'Laverix\Acl\Models\Eloquent\Permission');
             $key = is_numeric($permission) ? 'id' : 'name';
             $alias = (new $model)->where($key, $permission)->first();
 

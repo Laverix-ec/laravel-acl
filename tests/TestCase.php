@@ -1,4 +1,4 @@
-<?php namespace SlonCorp\Acl\Tests;
+<?php namespace Laverix\Acl\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
@@ -18,7 +18,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [
-            \SlonCorp\Acl\AclServiceProvider::class,
+            \Laverix\Acl\AclServiceProvider::class,
         ];
     }
 
@@ -53,8 +53,8 @@ abstract class TestCase extends BaseTestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
-        $config->set('auth.model', \SlonCorp\Acl\Models\Eloquent\User::class);
-        $config->set('auth.providers.users.model', \SlonCorp\Acl\Models\Eloquent\User::class);
+        $config->set('auth.model', \Laverix\Acl\Models\Eloquent\User::class);
+        $config->set('auth.providers.users.model', \Laverix\Acl\Models\Eloquent\User::class);
     }
 
     /* ------------------------------------------------------------------------------------------------
