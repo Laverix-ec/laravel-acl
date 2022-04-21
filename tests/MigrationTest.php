@@ -1,4 +1,4 @@
-<?php namespace SlonCorp\Acl\Tests;
+<?php namespace Laverix\Acl\Tests;
 
 use Illuminate\Support\Facades\Schema;
 

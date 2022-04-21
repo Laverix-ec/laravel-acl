@@ -1,6 +1,6 @@
-<?php namespace SlonCorp\Acl\Tests\Models;
+<?php namespace Laverix\Acl\Tests\Models;
 
-use SlonCorp\Acl\Tests\TestCase;
+use Laverix\Acl\Tests\TestCase;
 
 abstract class ModelsTest extends TestCase
 {

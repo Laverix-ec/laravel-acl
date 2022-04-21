@@ -1,4 +1,4 @@
-<?php namespace SlonCorp\Acl\Helper;
+<?php namespace Laverix\Acl\Helper;
 
 use Illuminate\Support\Collection;
 

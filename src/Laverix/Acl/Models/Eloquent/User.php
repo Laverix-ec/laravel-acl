@@ -1,12 +1,12 @@
 <?php
 
-namespace SlonCorp\Acl\Models\Eloquent;
+namespace Laverix\Acl\Models\Eloquent;
 
 
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use SlonCorp\Acl\Traits\HasRole;
+use Laverix\Acl\Traits\HasRole;
 
 class User extends Authenticatable
 {

@@ -1,12 +1,9 @@
 
-# SlonCorp/Laravel-ACL
+# Laverix/Laravel-ACL
 
 [![Laravel](https://img.shields.io/badge/Laravel-~5.0-orange.svg?style=flat-square)](http://laravel.com)
-[![Source](http://img.shields.io/badge/source-SlonCorp/laravel--acl-blue.svg?style=flat-square)](https://github.com/SlonCorp/laravel-acl/)
-[![Build Status](http://img.shields.io/travis/SlonCorp/laravel--acl/master.svg?style=flat-square)](https://travis-ci.org/SlonCorp/laravel-acl)
+[![Source](http://img.shields.io/badge/source-Laverix--ec/laravel--acl-blue.svg?style=flat-square)](https://github.com/Laverix-ec/laravel-acl/)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
-[![Total Downloads](http://img.shields.io/packagist/dt/SlonCorp/laravel-acl.svg?style=flat-square)](https://packagist.org/packages/SlonCorp/laravel-acl)
-
 Laravel ACL adds role based permissions to built in Auth System of Laravel 5. ACL middleware protects routes and even crud controller methods.
 
 # Table of Contents
@@ -29,7 +26,7 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 ```
 "require": {
 ...
-"sloncorp/laravel-acl": "~1.0@dev",
+"Laverix/laravel-acl": "~1.0@dev",
 ...
 },
 ```
@@ -42,7 +39,7 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 'Illuminate\Auth\AuthServiceProvider',
 ...
-'SlonCorp\Acl\AclServiceProvider',
+'Laverix\Acl\AclServiceProvider',
 
 ],
 ```
@@ -50,7 +47,7 @@ Laravel ACL adds role based permissions to built in Auth System of Laravel 5. AC
 3. Publish the package migrations to your application and run these with `php artisan migrate.
 
 ```
-$ php artisan vendor:publish --provider="SlonCorp\Acl\AclServiceProvider"
+$ php artisan vendor:publish --provider="Laverix\Acl\AclServiceProvider"
 ```
 
 > **Use your own models.**
@@ -62,7 +59,7 @@ $ php artisan vendor:publish --provider="SlonCorp\Acl\AclServiceProvider"
 protected $routeMiddleware = [
 
 ....
-'acl' => 'SlonCorp\Acl\Middleware\HasPermission',
+'acl' => 'Laverix\Acl\Middleware\HasPermission',
 
 ];
 ```
@@ -70,7 +67,7 @@ protected $routeMiddleware = [
 5. Add the HasRole trait to your `User` model.
 
 ```php
-use SlonCorp\Acl\Traits\HasRole;
+use Laverix\Acl\Traits\HasRole;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
@@ -80,7 +77,7 @@ use Authenticatable, CanResetPassword, HasRole;
 
 # <a name="documentation"></a>Documentation
 
-Follow along the [Wiki](https://github.com/SlonCorp/laravel-acl/wiki) to find out more.
+Follow along the [Wiki](https://github.com/Laverix-ec/laravel-acl/wiki) to find out more.
 
 # <a name="roadmap"></a>Roadmap
 
@@ -103,14 +100,14 @@ Here's the TODO list for the next release (**2.0**).
 
 *June 14, 2015*
 * [x] Added backward compatibility to l5.0 for lists() method.
-* [x] Added [Blade Template Extensions](https://github.com/SlonCorp/laravel-acl/wiki/Blade-Extensions).
+* [x] Added [Blade Template Extensions](https://github.com/Laverix-ec/laravel-acl/wiki/Blade-Extensions).
 
 *March 28, 2015*
 * [x] Added Role Scope to get all users having a specific role. e.g `User::role('admin')->get();` will list all users having `admin` role.
 
 *March 7, 2015*
-* [x] `is()` and `can()` methods now support comma for `AND` and pipe as `OR` operator. Or pass an operator as a second param. [more information](https://github.com/SlonCorp/laravel-acl/wiki/Validate-Permissions-and-Roles)
-* [x] You can bind multiple permissions together so they inherit ones permission. [more information](https://github.com/SlonCorp/laravel-acl/wiki/Permissions-Inheritance)
+* [x] `is()` and `can()` methods now support comma for `AND` and pipe as `OR` operator. Or pass an operator as a second param. [more information](https://github.com/Laverix-ec/laravel-acl/wiki/Validate-Permissions-and-Roles)
+* [x] You can bind multiple permissions together so they inherit ones permission. [more information](https://github.com/Laverix-ec/laravel-acl/wiki/Permissions-Inheritance)
 
 # <a name="contribution-guidelines"></a>Contribution Guidelines
 

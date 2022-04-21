@@ -1,4 +1,4 @@
-<?php namespace SlonCorp\Acl;
+<?php namespace Laverix\Acl;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;

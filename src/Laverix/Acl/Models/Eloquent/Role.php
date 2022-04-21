@@ -1,10 +1,10 @@
 <?php
 
-namespace SlonCorp\Acl\Models\Eloquent;
+namespace Laverix\Acl\Models\Eloquent;
 
 
 use Illuminate\Database\Eloquent\Model;
-use SlonCorp\Acl\Traits\HasPermission;
+use Laverix\Acl\Traits\HasPermission;
 
 class Role extends Model
 {
@@ -31,7 +31,7 @@ class Role extends Model
      */
     public function users()
     {
-        $model = config('auth.providers.users.model', 'SlonCorp\Acl\Models\Eloquent\User');
+        $model = config('auth.providers.users.model', 'Laverix\Acl\Models\Eloquent\User');
 
         return $this->belongsToMany($model)->withTimestamps();
     }

@@ -1,5 +1,5 @@
 {
-    "name": "sloncorp/laravel-acl",
+    "name": "laverix-ec/laravel-acl",
     "description": "Role-based permissions for Laravel 5 built in Auth system.",
     "license": "MIT",
     "keywords": [
@@ -13,28 +13,28 @@
     ],
     "authors": [
         {
-            "name": "SlonCorp Cia. Ltda.",
-            "homepage": "https://github.com/SlonCorp",
+            "name": "Laverix Cia. Ltda.",
+            "homepage": "https://github.com/Laverix-ec",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/support": "~5.0"
+        "php": ">=7.2",
+        "illuminate/support": "^6.0|^7.0|^8.0|^9.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0",
-        "orchestra/testbench": "~3.0",
-        "doctrine/dbal": "^2.5"
+        "phpunit/phpunit": "^8.0|^9.0",
+        "orchestra/testbench": "^5.0|^6.0",
+        "doctrine/dbal": "^2.9"
     },
     "autoload": {
         "psr-4": {
-            "SlonCorp\\Acl\\": "src/SlonCorp/Acl"
+            "Laverix\\Acl\\": "src/Laverix/Acl"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SlonCorp\\Acl\\Tests\\": "tests/"
+            "Laverix\\Acl\\Tests\\": "tests/"
         }
     }
 }

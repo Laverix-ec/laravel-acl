@@ -1,6 +1,6 @@
 <?php
 
-namespace SlonCorp\Acl\Models\Eloquent;
+namespace Laverix\Acl\Models\Eloquent;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +28,7 @@ class Permission extends Model
      */
     public function roles()
     {
-        $model = config('acl.role', 'SlonCorp\Acl\Models\Eloquent\Role');
+        $model = config('acl.role', 'Laverix\Acl\Models\Eloquent\Role');
 
         return $this->belongsToMany($model)->withTimestamps()->where('enabled', 1);
 
@@ -41,7 +41,7 @@ class Permission extends Model
      */
     public function users()
     {
-        $model = config('auth.providers.users.model', 'SlonCorp\Acl\Models\Eloquent\User');
+        $model = config('auth.providers.users.model', 'Laverix\Acl\Models\Eloquent\User');
 
         return $this->belongsToMany($model)->withTimestamps();
     }
@@ -53,7 +53,7 @@ class Permission extends Model
      */
     public function module()
     {
-        $model = config('acl.module', 'SlonCorp\Acl\Models\Eloquent\Module');
+        $model = config('acl.module', 'Laverix\Acl\Models\Eloquent\Module');
 
         return $this->belongsTo($model)->withTimestamps();
     }

@@ -1,4 +1,4 @@
-<?php namespace SlonCorp\Acl\Traits;
+<?php namespace Laverix\Acl\Traits;
 
 use Illuminate\Support\Collection;
 

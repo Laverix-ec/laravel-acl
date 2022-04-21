@@ -1,6 +1,6 @@
 <?php
 
-namespace SlonCorp\Acl\Models\Eloquent;
+namespace Laverix\Acl\Models\Eloquent;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -35,7 +35,7 @@ class Module extends Model
      */
     public function permissions()
     {
-        $model = config('acl.permission', 'SlonCorp\Acl\Models\Eloquent\Permission');
+        $model = config('acl.permission', 'Laverix\Acl\Models\Eloquent\Permission');
 
         return $this->hasMany($model)->withTimestamps()->where('enabled', 1);
     }

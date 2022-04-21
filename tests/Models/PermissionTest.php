@@ -1,7 +1,7 @@
-<?php namespace SlonCorp\Acl\Tests\Models;
+<?php namespace Laverix\Acl\Tests\Models;
 
-use SlonCorp\Acl\Models\Eloquent\Permission;
-use SlonCorp\Acl\Models\Eloquent\Role;
+use Laverix\Acl\Models\Eloquent\Permission;
+use Laverix\Acl\Models\Eloquent\Role;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class PermissionTest extends ModelsTest
@@ -42,7 +42,7 @@ class PermissionTest extends ModelsTest
     {
         $expectations = [
             \Illuminate\Database\Eloquent\Model::class,
-            \SlonCorp\Acl\Models\Eloquent\Permission::class,
+            \Laverix\Acl\Models\Eloquent\Permission::class,
         ];
 
         foreach ($expectations as $expected) {
@@ -58,7 +58,7 @@ class PermissionTest extends ModelsTest
         $this->assertInstanceOf(BelongsToMany::class, $rolesRelationship);
 
         $this->assertInstanceOf(
-            \SlonCorp\Acl\Models\Eloquent\Role::class,
+            \Laverix\Acl\Models\Eloquent\Role::class,
             $rolesRelationship->getRelated()
         );
     }

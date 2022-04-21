@@ -8,9 +8,9 @@ return [
      * to package's model. You can define your model here.
      */
 
-    'role'       => 'SlonCorp\Acl\Models\Eloquent\Role',
-    'permission' => 'SlonCorp\Acl\Models\Eloquent\Permission',
-    'module'     => 'SlonCorp\Acl\Models\Eloquent\Module',
+    'role'       => 'Laverix\Acl\Models\Eloquent\Role',
+    'permission' => 'Laverix\Acl\Models\Eloquent\Permission',
+    'module'     => 'Laverix\Acl\Models\Eloquent\Module',
 
     /**
      * Most Permissive Wins right
