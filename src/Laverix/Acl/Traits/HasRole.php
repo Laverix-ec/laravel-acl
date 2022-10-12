@@ -6,6 +6,7 @@ namespace Laverix\Acl\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * Class HasRoleImplementation
@@ -263,14 +264,14 @@ trait HasRoleImplementation
     public function __call($method, $arguments)
     {
         // Handle isRoleSlug() methods
-        if (starts_with($method, 'is') and $method !== 'is' and !starts_with($method, 'isWith')) {
+        if (Str::startsWith($method, 'is') and $method !== 'is' and !Str::startsWith($method, 'isWith')) {
             $role = substr($method, 2);
 
             return $this->hasRole($role);
         }
 
         // Handle canDoSomething() methods
-        if (starts_with($method, 'can') and $method !== 'can' and !starts_with($method, 'canWith')) {
+        if (Str::startsWith($method, 'can') and $method !== 'can' and !Str::startsWith($method, 'canWith')) {
             $permission = substr($method, 3);
             $permission = snake_case($permission, '.');
 
