@@ -2,6 +2,7 @@
 
 use Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AclServiceProvider extends ServiceProvider
 {
@@ -23,9 +24,9 @@ class AclServiceProvider extends ServiceProvider
         $this->publishMigration();
 
         $laravel = app();
-        if (starts_with($laravel::VERSION, '5.0')) {
+        if (Str::startsWith($laravel::VERSION, '5.0')) {
             $this->registerBlade5_0();
-        } else if (starts_with($laravel::VERSION, ['5.1', '5.2'])) {
+        } else if (Str::startsWith($laravel::VERSION, ['5.1', '5.2'])) {
             $this->registerBlade5_1();
         } else {
             $this->registerBlade5_3();
